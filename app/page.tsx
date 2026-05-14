@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Zap, Cpu, Globe, Users, ArrowRight, Image } from "lucide-react";
+import Image from "next/image";
+import { Zap, Cpu, Globe, Users, ArrowRight, Image as ImageIcon } from "lucide-react";
 
 const services = [
   {
@@ -38,19 +39,19 @@ export default function HomePage() {
       <nav className="border-b border-slate-800 bg-slate-900/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Zap className="w-6 h-6 text-cyan-400" />
-            <span className="font-bold text-lg text-white">Spark E-Solutions</span>
+            <Image src="/logo.png" alt="Spark E-Solutions Logo" width={40} height={40} className="w-10 h-10 object-contain" />
+            <span className="font-bold text-xl text-white">Spark E-Solutions</span>
           </div>
           <div className="flex items-center gap-6">
-            <a href="#services" className="text-slate-400 hover:text-cyan-400 transition-colors text-sm">
+            <a href="#services" className="text-slate-300 hover:text-sparkGold-500 transition-colors text-sm">
               Services
             </a>
-            <a href="#gallery" className="text-slate-400 hover:text-cyan-400 transition-colors text-sm">
+            <a href="#gallery" className="text-slate-300 hover:text-sparkGold-500 transition-colors text-sm">
               Gallery
             </a>
             <Link
               href="/book"
-              className="bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-semibold px-4 py-2 rounded-lg transition-colors text-sm"
+              className="bg-sparkGold-500 hover:bg-sparkGold-400 text-sparkBlue-950 font-semibold px-4 py-2 rounded-lg transition-colors text-sm shadow-sm"
             >
               Book a Session
             </Link>
@@ -60,12 +61,12 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <section className="relative py-24 px-4 text-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-cyan-950 opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-br from-sparkBlue-950 via-sparkBlue-900 to-sparkBlue-800 opacity-80" />
         <div className="relative max-w-4xl mx-auto">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Zap className="w-10 h-10 text-cyan-400" />
-            <h1 className="text-5xl md:text-6xl font-extrabold text-white">
-              Spark <span className="text-cyan-400">E-Solutions</span>
+          <div className="flex flex-col items-center justify-center gap-6 mb-4">
+            <Image src="/logo.png" alt="Spark E-Solutions Logo" width={160} height={160} className="w-40 h-40 object-contain drop-shadow-lg" />
+            <h1 className="text-5xl md:text-6xl font-extrabold text-white tracking-tight">
+              SPARK <span className="text-sparkGold-500">E-SOLUTIONS</span>
             </h1>
           </div>
           <p className="mt-6 text-xl text-slate-300 max-w-2xl mx-auto">
@@ -75,13 +76,13 @@ export default function HomePage() {
           <div className="mt-10 flex items-center justify-center gap-4 flex-wrap">
             <Link
               href="/book"
-              className="flex items-center gap-2 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold px-8 py-4 rounded-xl transition-colors text-lg"
+              className="flex items-center gap-2 bg-sparkGold-500 hover:bg-sparkGold-400 text-sparkBlue-950 font-bold px-8 py-4 rounded-xl transition-all hover:scale-105 shadow-lg text-lg"
             >
               Book a Session <ArrowRight className="w-5 h-5" />
             </Link>
             <a
               href="#services"
-              className="flex items-center gap-2 border border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 font-bold px-8 py-4 rounded-xl transition-colors text-lg"
+              className="flex items-center gap-2 border-2 border-sparkGold-500 text-sparkGold-500 hover:bg-sparkGold-500/10 font-bold px-8 py-4 rounded-xl transition-all text-lg"
             >
               Explore Services
             </a>
@@ -90,24 +91,24 @@ export default function HomePage() {
       </section>
 
       {/* Stats / Conducted Sessions Counter */}
-      <section className="py-16 px-4 bg-slate-800/50">
+      <section className="py-16 px-4 bg-sparkBlue-900/50">
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat) => (
-            <div key={stat.label} className="text-center">
-              <p className="text-4xl font-extrabold text-cyan-400">{stat.value}</p>
-              <p className="mt-2 text-slate-400 text-sm">{stat.label}</p>
+            <div key={stat.label} className="text-center p-4 rounded-2xl bg-sparkBlue-800/30 border border-sparkBlue-700/50">
+              <p className="text-4xl font-extrabold text-sparkGold-500 drop-shadow-md">{stat.value}</p>
+              <p className="mt-2 text-sparkBlue-100 font-medium text-sm uppercase tracking-wide">{stat.label}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Services Grid */}
-      <section id="services" className="py-20 px-4">
+      <section id="services" className="py-20 px-4 bg-sparkBlue-950">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-white text-center mb-4">
-            Our <span className="text-cyan-400">Services</span>
+          <h2 className="text-4xl font-extrabold text-white text-center mb-4 tracking-tight">
+            Our <span className="text-sparkGold-500">Services</span>
           </h2>
-          <p className="text-slate-400 text-center mb-12 max-w-xl mx-auto">
+          <p className="text-sparkBlue-200 text-center mb-12 max-w-xl mx-auto text-lg">
             Structured training programs designed for students, professionals,
             and organisations looking to upskill in emerging technologies.
           </p>
@@ -115,24 +116,24 @@ export default function HomePage() {
             {services.map((service) => (
               <div
                 key={service.title}
-                className="bg-slate-800 border border-slate-700 hover:border-cyan-500/50 rounded-2xl p-8 transition-all hover:shadow-lg hover:shadow-cyan-500/10"
+                className="bg-sparkBlue-900/60 border border-sparkBlue-700 hover:border-sparkGold-500/50 rounded-2xl p-8 transition-all duration-300 hover:shadow-xl hover:shadow-sparkGold-500/10 hover:-translate-y-1 group"
               >
-                <div className="mb-4">{service.icon}</div>
+                <div className="mb-4 p-3 bg-sparkBlue-800 rounded-xl inline-block group-hover:scale-110 transition-transform">{service.icon}</div>
                 <h3 className="text-xl font-bold text-white mb-3">
                   {service.title}
                 </h3>
-                <p className="text-slate-400 text-sm leading-relaxed">
+                <p className="text-sparkBlue-200 text-sm leading-relaxed">
                   {service.description}
                 </p>
               </div>
             ))}
           </div>
-          <div className="text-center mt-10">
+          <div className="text-center mt-12">
             <Link
               href="/book"
-              className="inline-flex items-center gap-2 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold px-8 py-3 rounded-xl transition-colors"
+              className="inline-flex items-center gap-2 bg-sparkGold-500 hover:bg-sparkGold-400 text-sparkBlue-950 font-bold px-8 py-4 rounded-xl transition-colors shadow-lg"
             >
-              Book a Session <ArrowRight className="w-4 h-4" />
+              Book a Session <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
         </div>
@@ -154,7 +155,7 @@ export default function HomePage() {
                 key={i}
                 className="aspect-video bg-slate-800 border border-slate-700 rounded-xl flex flex-col items-center justify-center gap-2 text-slate-600"
               >
-                <Image className="w-8 h-8" />
+                <ImageIcon className="w-8 h-8" />
                 <span className="text-xs">Gallery Image {i}</span>
                 <span className="text-xs text-slate-700">Firebase Storage</span>
               </div>
@@ -164,15 +165,15 @@ export default function HomePage() {
       </section>
 
       {/* Team Section */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-4 bg-sparkBlue-900/30">
         <div className="max-w-4xl mx-auto text-center">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <Users className="w-6 h-6 text-cyan-400" />
-            <h2 className="text-3xl font-bold text-white">
-              Meet the <span className="text-cyan-400">Team</span>
+            <Users className="w-8 h-8 text-sparkGold-500" />
+            <h2 className="text-4xl font-extrabold text-white tracking-tight">
+              Meet the <span className="text-sparkGold-500">Team</span>
             </h2>
           </div>
-          <p className="text-slate-400 mb-10">
+          <p className="text-sparkBlue-200 mb-12 text-lg">
             A passionate group of engineers building the future of tech education.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6 text-left">
@@ -186,13 +187,13 @@ export default function HomePage() {
             ].map((member) => (
               <div
                 key={member.name}
-                className="bg-slate-800 border border-slate-700 rounded-xl p-5"
+                className="bg-sparkBlue-900/80 border border-sparkBlue-800 rounded-2xl p-6 hover:border-sparkGold-500/30 transition-colors"
               >
-                <div className="w-10 h-10 rounded-full bg-cyan-500/20 flex items-center justify-center mb-3">
-                  <Users className="w-5 h-5 text-cyan-400" />
+                <div className="w-12 h-12 rounded-2xl bg-sparkGold-500/10 flex items-center justify-center mb-4">
+                  <Users className="w-6 h-6 text-sparkGold-500" />
                 </div>
-                <p className="font-semibold text-white">{member.name}</p>
-                <p className="text-slate-400 text-sm mt-1">{member.role}</p>
+                <p className="font-bold text-white text-lg">{member.name}</p>
+                <p className="text-sparkGold-400 text-sm mt-1 font-medium">{member.role}</p>
               </div>
             ))}
           </div>
@@ -200,12 +201,13 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-slate-800 py-8 px-4 text-center text-slate-500 text-sm">
-        <div className="flex items-center justify-center gap-2 mb-2">
-          <Zap className="w-4 h-4 text-cyan-400" />
-          <span className="font-semibold text-slate-300">Spark E-Solutions</span>
+      <footer className="border-t border-sparkBlue-800 py-10 px-4 text-center text-sparkBlue-300 text-sm bg-sparkBlue-950">
+        <div className="flex flex-col items-center justify-center gap-4 mb-4">
+          <Image src="/logo.png" alt="Spark E-Solutions Logo" width={48} height={48} className="w-12 h-12 object-contain grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100" />
+          <span className="font-bold text-white text-lg tracking-wide">SPARK E-SOLUTIONS</span>
         </div>
-        <p>© {new Date().getFullYear()} Spark E-Solutions. All rights reserved.</p>
+        <p className="mt-2">Scaling New Heights in IoT.</p>
+        <p className="mt-6 opacity-60">© {new Date().getFullYear()} Spark E-Solutions. All rights reserved.</p>
       </footer>
     </main>
   );
