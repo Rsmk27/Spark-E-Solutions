@@ -50,7 +50,7 @@ export default function Navbar() {
             />
           </div>
           <span className={cn(
-            "font-black text-xl tracking-tight transition-colors text-white"
+            "font-display font-black text-xl tracking-tighter transition-colors text-white"
           )}>
             SPARK <span className="text-sparkGold-500">E-S</span>
           </span>
@@ -61,7 +61,7 @@ export default function Navbar() {
             <a 
               key={item}
               href={`#${item.toLowerCase()}`} 
-              className="text-slate-300 hover:text-sparkGold-500 transition-colors text-sm font-bold uppercase tracking-wider relative group"
+              className="text-slate-300 hover:text-sparkGold-500 transition-colors text-sm font-heading font-bold uppercase tracking-wider relative group"
             >
               {item}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-sparkGold-500 transition-all group-hover:w-full" />
@@ -69,7 +69,7 @@ export default function Navbar() {
           ))}
           <Link
             href="/book"
-            className="bg-sparkGold-500 hover:bg-sparkGold-400 text-sparkBlue-950 font-black px-6 py-2.5 rounded-full transition-all hover:scale-105 text-sm shadow-[0_4px_10px_rgba(255,193,0,0.2)]"
+            className="bg-sparkGold-500 hover:bg-sparkGold-400 text-sparkBlue-950 font-heading font-black px-6 py-2.5 rounded-full transition-all hover:scale-105 text-sm shadow-[0_4px_10px_rgba(255,193,0,0.2)]"
           >
             BOOK NOW
           </Link>

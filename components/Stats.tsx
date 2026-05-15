@@ -62,10 +62,10 @@ export default function Stats() {
               transition={{ delay: index * 0.1, duration: 0.8, ease: "easeOut" }}
               className="text-center"
             >
-              <p className="text-5xl md:text-7xl font-black text-sparkGold-500 mb-4 tabular-nums tracking-tighter">
+              <p className="text-5xl md:text-7xl font-heading font-black text-sparkGold-500 mb-4 tabular-nums tracking-tighter">
                 <Counter value={stat.value} suffix={stat.suffix} />
               </p>
-              <p className="text-slate-600 font-black uppercase tracking-[0.4em] text-[10px]">
+              <p className="text-slate-600 font-heading font-black uppercase tracking-[0.4em] text-[10px]">
                 {stat.label}
               </p>
             </motion.div>

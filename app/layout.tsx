@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import { Inter, Space_Grotesk, Unbounded } from "next/font/google";
 import "./globals.css";
 
-const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk" });
+const unbounded = Unbounded({ subsets: ["latin"], variable: "--font-unbounded" });
 
 export const metadata: Metadata = {
   title: "Spark E-Solutions | IoT & Embedded Systems Training",
@@ -18,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${outfit.variable} font-sans min-h-screen antialiased selection:bg-sparkGold-500 selection:text-sparkBlue-950`}>
+      <body className={`${inter.variable} ${spaceGrotesk.variable} ${unbounded.variable} font-sans min-h-screen antialiased selection:bg-sparkGold-500 selection:text-sparkBlue-950`}>
         {/* Persistent Global Background Layers */}
         <div className="site-bg-grid" />
         <div className="site-bg-glow" />

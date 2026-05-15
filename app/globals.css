@@ -14,9 +14,13 @@ html {
 body {
   background-color: transparent;
   color: var(--foreground);
-  font-family: var(--font-outfit), sans-serif;
+  font-family: var(--font-inter), sans-serif;
   position: relative;
   min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-space-grotesk), sans-serif;
 }
 
 /* Engineering Grid Background - Fixed to viewport */
@@ -50,6 +54,11 @@ body {
   
   .glass-card {
     @apply bg-slate-900/40 backdrop-blur-sm border border-slate-800/50 hover:border-sparkGold-500/30 transition-all duration-300;
+  }
+
+  .text-outline {
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+    color: transparent;
   }
 
   .text-glow {

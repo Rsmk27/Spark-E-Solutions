@@ -78,7 +78,8 @@ export default function Hero() {
               <motion.span
                 key={index}
                 variants={child}
-                className="text-4xl sm:text-6xl md:text-[5.5rem] font-black tracking-tight leading-[1] text-white py-1 px-1 inline-block"
+                whileHover={{ scale: 1.1, rotate: index % 2 === 0 ? 5 : -5 }}
+                className="text-4xl sm:text-6xl md:text-[5.5rem] font-display font-black tracking-tighter leading-[1] text-white py-1 px-1 inline-block cursor-default select-none"
               >
                 {char}
               </motion.span>
@@ -95,7 +96,8 @@ export default function Hero() {
               <motion.span
                 key={index}
                 variants={child}
-                className="text-4xl sm:text-6xl md:text-[5.5rem] font-black tracking-tight leading-[1] text-transparent bg-clip-text bg-gradient-to-b from-sparkGold-300 to-sparkGold-600 py-1 px-1"
+                whileHover={{ scale: 1.1, rotate: index % 2 === 0 ? -5 : 5 }}
+                className="text-4xl sm:text-6xl md:text-[5.5rem] font-display font-black tracking-tighter leading-[1] text-transparent bg-clip-text bg-gradient-to-b from-sparkGold-300 to-sparkGold-600 py-1 px-1 inline-block cursor-default select-none"
               >
                 {char}
               </motion.span>
@@ -149,7 +151,7 @@ export default function Hero() {
               className="flex items-center gap-2"
             >
               {item.icon}
-              <span className="font-black text-[9px] tracking-[0.4em]">{item.label}</span>
+              <span className="font-heading font-black text-[9px] tracking-[0.4em] uppercase">{item.label}</span>
             </motion.div>
           ))}
         </div>
