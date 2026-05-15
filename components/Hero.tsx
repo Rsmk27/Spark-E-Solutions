@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { ArrowRight, Zap, Globe, Cpu } from "lucide-react";
 
 export default function Hero() {
@@ -17,7 +17,7 @@ export default function Hero() {
     }),
   };
 
-  const child = {
+  const child: Variants = {
     visible: {
       opacity: 1,
       y: 0,
@@ -33,62 +33,41 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-24 pb-12 overflow-hidden">
-      {/* Background Image Layer */}
-      <div className="absolute inset-0 -z-20">
-        <Image 
-          src="/bg-hero.png" 
-          alt="Tech Background" 
-          fill 
-          className="object-cover opacity-20"
-          priority
-        />
-        <div className="absolute inset-0 bg-slate-950/60" />
-      </div>
-
-      {/* Grid & Gradient Overlays */}
-      <div className="absolute inset-0 bg-grid-white -z-10 opacity-30" />
-      <div className="absolute inset-0 hero-gradient -z-20" />
+    <section className="relative h-screen min-h-[600px] flex items-center justify-center pt-20 pb-10 overflow-hidden bg-transparent">
+      {/* Subtle Hero-specific gradient overlay (now transparent at edges) */}
+      <div className="absolute inset-0 hero-gradient -z-10" />
       
-      {/* Background orbs */}
-      <motion.div 
-        animate={{ 
-          opacity: [0.1, 0.2, 0.1] 
-        }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-sparkBlue-500/10 rounded-full blur-[120px] -z-10" 
-      />
-
-      <div className="container mx-auto px-6 relative z-10 text-center">
+      <div className="container mx-auto px-6 relative z-10 flex flex-col items-center justify-center h-full text-center">
+        {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-white/5 backdrop-blur-sm mb-12 text-sparkGold-400 text-xs font-black uppercase tracking-[0.2em] border border-white/5"
+          className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-white/5 backdrop-blur-sm mb-6 md:mb-10 text-sparkGold-400 text-[10px] md:text-xs font-black uppercase tracking-[0.2em] border border-white/5 shrink-0"
         >
           <Zap className="w-3.5 h-3.5 fill-current" />
           <span>Innovate • Educate • Scale</span>
         </motion.div>
 
+        {/* Logo */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, ease: [0.2, 0.65, 0.3, 0.9] }}
-          className="mb-10 flex justify-center"
+          className="mb-6 md:mb-10 flex justify-center shrink-0"
         >
-          <div className="relative">
-            <Image
-              src="/logo.png"
-              alt="Spark E-Solutions Logo"
-              width={120}
-              height={120}
-              className="relative w-24 h-24 md:w-32 md:h-32 object-contain drop-shadow-xl"
-              priority
-            />
-          </div>
+          <Image
+            src="/logo.png"
+            alt="Spark E-Solutions Logo"
+            width={100}
+            height={100}
+            className="w-20 h-20 md:w-28 md:h-28 object-contain drop-shadow-xl"
+            priority
+          />
         </motion.div>
 
-        <div className="mb-10 px-4">
+        {/* Title */}
+        <div className="mb-6 md:mb-10 px-4 shrink-0">
           <motion.div
             variants={container}
             initial="hidden"
@@ -99,7 +78,7 @@ export default function Hero() {
               <motion.span
                 key={index}
                 variants={child}
-                className="text-5xl md:text-[6.5rem] font-black tracking-tight leading-[1] text-white py-1 px-1 inline-block"
+                className="text-4xl sm:text-6xl md:text-[5.5rem] font-black tracking-tight leading-[1] text-white py-1 px-1 inline-block"
               >
                 {char}
               </motion.span>
@@ -110,13 +89,13 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
             custom={1}
-            className="flex flex-wrap justify-center overflow-visible"
+            className="flex flex-wrap justify-center mt-2 md:mt-4 overflow-visible"
           >
             {line2.split("").map((char, index) => (
               <motion.span
                 key={index}
                 variants={child}
-                className="text-5xl md:text-[6.5rem] font-black tracking-tight leading-[1] text-transparent bg-clip-text bg-gradient-to-b from-sparkGold-300 to-sparkGold-600 py-1 px-1"
+                className="text-4xl sm:text-6xl md:text-[5.5rem] font-black tracking-tight leading-[1] text-transparent bg-clip-text bg-gradient-to-b from-sparkGold-300 to-sparkGold-600 py-1 px-1"
               >
                 {char}
               </motion.span>
@@ -124,36 +103,39 @@ export default function Hero() {
           </motion.div>
         </div>
 
+        {/* Description */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
-          className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-14 leading-relaxed font-medium"
+          className="text-sm md:text-lg text-slate-400 max-w-2xl mx-auto mb-8 md:mb-12 leading-relaxed font-medium px-4"
         >
           Bridging the gap between <span className="text-white font-bold">Hardware Concepts</span> and <span className="text-white font-bold">Industrial Reality</span>. Elite IoT training for the next generation.
         </motion.p>
 
+        {/* Buttons */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1, ease: "easeOut" }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-6"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 shrink-0"
         >
           <Link
             href="/book"
-            className="group relative flex items-center gap-3 bg-sparkGold-500 hover:bg-sparkGold-400 text-sparkBlue-950 font-black px-10 py-5 rounded-full transition-all hover:scale-105 shadow-xl text-xl"
+            className="group relative flex items-center gap-3 bg-sparkGold-500 hover:bg-sparkGold-400 text-sparkBlue-950 font-black px-8 md:px-10 py-4 md:py-5 rounded-full transition-all hover:scale-105 shadow-xl text-lg md:text-xl"
           >
-            Start Your Batch <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+            Start Your Batch <ArrowRight className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform" />
           </Link>
           <a
             href="#services"
-            className="flex items-center gap-3 px-10 py-5 rounded-full text-white bg-white/5 hover:bg-white/10 font-bold transition-all text-xl border border-white/5"
+            className="flex items-center gap-3 px-8 md:px-10 py-4 md:py-5 rounded-full text-white bg-white/5 hover:bg-white/10 font-bold transition-all text-lg md:text-xl border border-white/5"
           >
             Explore Tech
           </a>
         </motion.div>
 
-        <div className="mt-20 flex flex-wrap justify-center gap-10 text-slate-600">
+        {/* Bottom Labels */}
+        <div className="mt-12 md:mt-16 flex flex-wrap justify-center gap-8 text-slate-600 hidden sm:flex shrink-0">
           {[
             { icon: <Cpu className="w-4 h-4" />, label: "EMBEDDED" },
             { icon: <Globe className="w-4 h-4" />, label: "CLOUD" },
@@ -173,17 +155,18 @@ export default function Hero() {
         </div>
       </div>
       
+      {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
+        className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 hidden md:block"
       >
-        <div className="w-7 h-12 border border-white/10 rounded-full flex justify-center p-1.5">
+        <div className="w-6 h-10 border border-white/10 rounded-full flex justify-center p-1">
           <motion.div
-            animate={{ y: [0, 16, 0] }}
+            animate={{ y: [0, 12, 0] }}
             transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-            className="w-1.5 h-1.5 bg-sparkGold-500 rounded-full"
+            className="w-1 h-1 bg-sparkGold-500 rounded-full"
           />
         </div>
       </motion.div>

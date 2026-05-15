@@ -50,7 +50,7 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
 
 export default function Stats() {
   return (
-    <section className="py-24 relative overflow-hidden bg-slate-950">
+    <section className="py-24 relative overflow-hidden bg-transparent">
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
           {stats.map((stat, index) => (

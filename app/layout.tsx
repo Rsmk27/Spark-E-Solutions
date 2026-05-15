@@ -18,8 +18,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${outfit.variable} font-sans min-h-screen bg-slate-950 text-slate-50 antialiased selection:bg-sparkGold-500 selection:text-sparkBlue-950`}>
-        {children}
+      <body className={`${outfit.variable} font-sans min-h-screen antialiased selection:bg-sparkGold-500 selection:text-sparkBlue-950`}>
+        {/* Persistent Global Background Layers */}
+        <div className="site-bg-grid" />
+        <div className="site-bg-glow" />
+        
+        <main className="relative z-10">
+          {children}
+        </main>
       </body>
     </html>
   );

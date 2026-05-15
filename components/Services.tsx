@@ -33,7 +33,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-32 px-4 relative">
+    <section id="services" className="py-32 px-4 relative bg-transparent">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-24">
           <motion.div
@@ -71,7 +71,7 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.8, ease: [0.2, 0.65, 0.3, 0.9] }}
-              className="group relative flex flex-col p-8 rounded-[2.5rem] bg-slate-900 border border-white/5 overflow-hidden h-full"
+              className="group relative flex flex-col p-8 rounded-[2.5rem] bg-slate-900/40 backdrop-blur-sm border border-white/5 overflow-hidden h-full"
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-100 transition-opacity duration-700`} />
               

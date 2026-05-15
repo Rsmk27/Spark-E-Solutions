@@ -8,9 +8,6 @@ const images = [
   { src: "/gallery/workshop.png", title: "IoT Workshop", category: "Training" },
   { src: "/gallery/embedded.png", title: "Hardware Design", category: "Engineering" },
   { src: "/gallery/software.png", title: "App Development", category: "Software" },
-  { src: "/gallery/workshop.png", title: "Sensor Interfacing", category: "Training" },
-  { src: "/gallery/embedded.png", title: "PCB Prototyping", category: "Engineering" },
-  { src: "/gallery/software.png", title: "Cloud Integration", category: "Software" },
 ];
 
 export default function Gallery() {
