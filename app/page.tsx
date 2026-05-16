@@ -65,7 +65,7 @@ export default function HomePage() {
               Made with precision by the Spark Team
             </div>
             <div className="text-slate-800 text-[10px] font-medium tracking-tighter">
-              © {new Date().getFullYear()} Spark E-Solutions. All rights reserved.
+              © {new Date().getFullYear()} 2026 Spark E-Solutions. All rights reserved.
             </div>
           </div>
         </div>
