@@ -19,7 +19,8 @@ const teamMembers = [
   { name: "Anand", role: "Embedded Engineer" },
   { name: "Prem", role: "App Developer" },
   { name: "Manikanta", role: "Web Developer" },
-  { name: "DivyaKanth & Navya", role: "Funders" },
+  { name: "DivyaKanth", role: "Funder" },
+  { name: "Navya", role: "Funder" },
 ];
 
 const mockBookings = [
