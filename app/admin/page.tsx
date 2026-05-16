@@ -11,6 +11,10 @@ import {
   Zap,
   CheckCircle,
   Clock,
+  Phone,
+  MapPin,
+  Briefcase,
+  UserCircle2,
 } from "lucide-react";
 
 const teamMembers = [
@@ -53,11 +57,35 @@ const mockBookings = [
   },
 ];
 
+const mockClients = [
+  {
+    id: "c1",
+    name: "Suresh Babu",
+    mobile: "+91 98765 43210",
+    address: "12-3, MG Road, Hyderabad, Telangana",
+    session: "IoT Basics",
+  },
+  {
+    id: "c2",
+    name: "Lakshmi Devi",
+    mobile: "+91 91234 56789",
+    address: "45, Anna Nagar, Chennai, Tamil Nadu",
+    session: "Embedded Systems Design",
+  },
+  {
+    id: "c3",
+    name: "Venkat Rao",
+    mobile: "+91 87654 32109",
+    address: "78, Koramangala, Bengaluru, Karnataka",
+    session: "Full Stack App Development",
+  },
+];
+
 export default function AdminPage() {
-  const [activeTab, setActiveTab] = useState<"team" | "bookings" | "gallery">(
+  const [activeTab, setActiveTab] = useState<"team" | "bookings" | "gallery" | "clients">(
     "team"
   );
-  const [isAuthenticated] = useState(false);
+  const [isAuthenticated] = useState(true); // TODO: re-enable Firebase Google Auth once DB is connected
 
   if (!isAuthenticated) {
     return (
@@ -135,21 +163,24 @@ export default function AdminPage() {
         <h1 className="text-2xl font-bold text-white mb-8">Dashboard</h1>
 
         {/* Tabs */}
-        <div className="flex gap-2 mb-8 border-b border-slate-800">
-          {(["team", "bookings", "gallery"] as const).map((tab) => (
+        <div className="flex gap-2 mb-8 border-b border-slate-800 flex-wrap">
+          {([
+            { key: "team", label: "Team Management", icon: <Users className="w-4 h-4" /> },
+            { key: "bookings", label: "Booking Management", icon: <Calendar className="w-4 h-4" /> },
+            { key: "clients", label: "Clients", icon: <UserCircle2 className="w-4 h-4" /> },
+            { key: "gallery", label: "Gallery Upload", icon: <Upload className="w-4 h-4" /> },
+          ] as const).map((tab) => (
             <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
+              key={tab.key}
+              onClick={() => setActiveTab(tab.key)}
               className={`flex items-center gap-2 px-4 py-3 text-sm font-medium capitalize transition-colors border-b-2 -mb-px ${
-                activeTab === tab
+                activeTab === tab.key
                   ? "border-cyan-400 text-cyan-400"
                   : "border-transparent text-slate-400 hover:text-white"
               }`}
             >
-              {tab === "team" && <Users className="w-4 h-4" />}
-              {tab === "bookings" && <Calendar className="w-4 h-4" />}
-              {tab === "gallery" && <Upload className="w-4 h-4" />}
-              {tab === "team" ? "Team Management" : tab === "bookings" ? "Booking Management" : "Gallery Upload"}
+              {tab.icon}
+              {tab.label}
             </button>
           ))}
         </div>
@@ -238,6 +269,61 @@ export default function AdminPage() {
                         Confirm
                       </button>
                     )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Clients */}
+        {activeTab === "clients" && (
+          <div>
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <h2 className="text-xl font-semibold text-white">Clients</h2>
+                <p className="text-slate-400 text-sm mt-1">{mockClients.length} registered clients</p>
+              </div>
+              <button className="bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-semibold px-4 py-2 rounded-lg transition-colors text-sm">
+                + Add Client
+              </button>
+            </div>
+
+            {/* Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {mockClients.map((client) => (
+                <div
+                  key={client.id}
+                  className="bg-slate-800 border border-slate-700 rounded-xl p-5 hover:border-cyan-500/40 transition-colors"
+                >
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center">
+                        <UserCircle2 className="w-5 h-5 text-cyan-400" />
+                      </div>
+                      <p className="font-semibold text-white">{client.name}</p>
+                    </div>
+                    <div className="flex gap-2">
+                      <button className="text-cyan-400 hover:text-cyan-300 text-xs transition-colors">Edit</button>
+                      <button className="text-red-400 hover:text-red-300 text-xs transition-colors">Delete</button>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2.5 text-sm">
+                    <div className="flex items-center gap-2 text-slate-300">
+                      <Phone className="w-4 h-4 text-cyan-400 shrink-0" />
+                      <span>{client.mobile}</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-slate-300">
+                      <MapPin className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+                      <span>{client.address}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-slate-300">
+                      <Briefcase className="w-4 h-4 text-cyan-400 shrink-0" />
+                      <span className="bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 px-2 py-0.5 rounded-full text-xs">
+                        {client.session}
+                      </span>
+                    </div>
                   </div>
                 </div>
               ))}
