@@ -68,11 +68,13 @@ export default function Hero() {
 
         {/* Title */}
         <div className="mb-6 md:mb-10 px-4 shrink-0">
+          <h1 className="sr-only">Spark E-Solutions</h1>
           <motion.div
             variants={container}
             initial="hidden"
             animate="visible"
             className="flex flex-wrap justify-center overflow-visible"
+            aria-hidden="true"
           >
             {line1.split("").map((char, index) => (
               <motion.span
@@ -91,6 +93,7 @@ export default function Hero() {
             animate="visible"
             custom={1}
             className="flex flex-wrap justify-center mt-2 md:mt-4 overflow-visible"
+            aria-hidden="true"
           >
             {line2.split("").map((char, index) => (
               <motion.span
