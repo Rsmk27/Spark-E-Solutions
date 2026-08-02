@@ -3,6 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Zap, ArrowLeft, Send } from "lucide-react";
+import { Input } from "@/components/Input";
+import { Select } from "@/components/Select";
+import { Textarea } from "@/components/Textarea";
 
 const SESSION_TYPES = [
   "IoT Basics (DHT, LDR, IR Sensors)",
@@ -123,7 +126,7 @@ export default function BookPage() {
             <label htmlFor="clientName" className="block text-sm font-medium text-slate-300 mb-2">
               Your Name <span className="text-red-400">*</span>
             </label>
-            <input
+            <Input
               id="clientName"
               name="clientName"
               type="text"
@@ -131,7 +134,6 @@ export default function BookPage() {
               value={form.clientName}
               onChange={handleChange}
               placeholder="e.g. Rahul Sharma"
-              className="w-full bg-slate-900 border border-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 rounded-xl px-4 py-3 text-white placeholder-slate-500 transition-colors outline-none"
             />
           </div>
 
@@ -140,14 +142,13 @@ export default function BookPage() {
             <label htmlFor="organization" className="block text-sm font-medium text-slate-300 mb-2">
               Organisation / Institution
             </label>
-            <input
+            <Input
               id="organization"
               name="organization"
               type="text"
               value={form.organization}
               onChange={handleChange}
               placeholder="e.g. NIT Warangal"
-              className="w-full bg-slate-900 border border-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 rounded-xl px-4 py-3 text-white placeholder-slate-500 transition-colors outline-none"
             />
           </div>
 
@@ -156,20 +157,19 @@ export default function BookPage() {
             <label htmlFor="sessionType" className="block text-sm font-medium text-slate-300 mb-2">
               Type of Session <span className="text-red-400">*</span>
             </label>
-            <select
+            <Select
               id="sessionType"
               name="sessionType"
               required
               value={form.sessionType}
               onChange={handleChange}
-              className="w-full bg-slate-900 border border-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 rounded-xl px-4 py-3 text-white transition-colors outline-none"
             >
               {SESSION_TYPES.map((type) => (
                 <option key={type} value={type}>
                   {type}
                 </option>
               ))}
-            </select>
+            </Select>
           </div>
 
           {/* Number of Days */}
@@ -177,7 +177,7 @@ export default function BookPage() {
             <label htmlFor="numberOfDays" className="block text-sm font-medium text-slate-300 mb-2">
               Number of Days Required <span className="text-red-400">*</span>
             </label>
-            <input
+            <Input
               id="numberOfDays"
               name="numberOfDays"
               type="number"
@@ -186,7 +186,6 @@ export default function BookPage() {
               required
               value={form.numberOfDays}
               onChange={handleChange}
-              className="w-full bg-slate-900 border border-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 rounded-xl px-4 py-3 text-white transition-colors outline-none"
             />
           </div>
 
@@ -195,14 +194,14 @@ export default function BookPage() {
             <label htmlFor="startDate" className="block text-sm font-medium text-slate-300 mb-2">
               Preferred Start Date <span className="text-red-400">*</span>
             </label>
-            <input
+            <Input
               id="startDate"
               name="startDate"
               type="date"
               required
               value={form.startDate}
               onChange={handleChange}
-              className="w-full bg-slate-900 border border-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 rounded-xl px-4 py-3 text-white transition-colors outline-none [color-scheme:dark]"
+              className="[color-scheme:dark]"
             />
           </div>
 
@@ -211,14 +210,13 @@ export default function BookPage() {
             <label htmlFor="notes" className="block text-sm font-medium text-slate-300 mb-2">
               Additional Notes
             </label>
-            <textarea
+            <Textarea
               id="notes"
               name="notes"
               rows={3}
               value={form.notes}
               onChange={handleChange}
               placeholder="Any specific requirements, topics, or questions..."
-              className="w-full bg-slate-900 border border-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 rounded-xl px-4 py-3 text-white placeholder-slate-500 transition-colors outline-none resize-none"
             />
           </div>
 
