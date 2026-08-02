@@ -1,0 +1,15 @@
+
+> spark-e-solutions@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.5.18
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.0.2:3000
+
+ ✓ Starting...
+ ✓ Ready in 1822ms
+ ○ Compiling /admin ...
+ ✓ Compiled /admin in 11.2s (966 modules)
+ GET /admin 200 in 13254ms
+ ✓ Compiled in 344ms (279 modules)
+ GET /admin 200 in 124ms
