@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Zap, ArrowLeft, Send } from "lucide-react";
+import { submitBooking } from "./submitBooking";
 
 const SESSION_TYPES = [
   "IoT Basics (DHT, LDR, IR Sensors)",
@@ -10,7 +11,7 @@ const SESSION_TYPES = [
   "Full Stack App Development",
 ];
 
-interface BookingForm {
+export interface BookingForm {
   clientName: string;
   organization: string;
   sessionType: string;
@@ -32,6 +33,7 @@ export default function BookPage() {
   const [form, setForm] = useState<BookingForm>(initialForm);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -46,11 +48,15 @@ export default function BookPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    // TODO: Replace with real Firestore write via lib/firebase.ts
-    // e.g. await addDoc(collection(db, "bookings"), { ...form, createdAt: serverTimestamp() });
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    setLoading(false);
-    setSubmitted(true);
+    setError(null);
+    try {
+      await submitBooking(form);
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "An error occurred");
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (submitted) {
@@ -113,6 +119,12 @@ export default function BookPage() {
             Fill in the details below and our team will confirm your session within 24 hours.
           </p>
         </div>
+
+        {error && (
+          <div className="bg-red-500/10 border border-red-500 text-red-500 p-4 rounded-xl mb-6">
+            {error}
+          </div>
+        )}
 
         <form
           onSubmit={handleSubmit}
