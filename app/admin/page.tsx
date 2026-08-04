@@ -1,7 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { auth } from "@/lib/firebase";
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+  onAuthStateChanged,
+  User,
+} from "firebase/auth";
 import {
   Shield,
   Users,
@@ -85,9 +93,43 @@ export default function AdminPage() {
   const [activeTab, setActiveTab] = useState<"team" | "bookings" | "gallery" | "clients">(
     "team"
   );
-  const [isAuthenticated] = useState(true); // TODO: re-enable Firebase Google Auth once DB is connected
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  if (!isAuthenticated) {
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handleSignIn = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      await signInWithPopup(auth, provider);
+    } catch (error) {
+      console.error("Error signing in with Google", error);
+    }
+  };
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+    } catch (error) {
+      console.error("Error signing out", error);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-slate-900 text-slate-100 flex items-center justify-center p-4">
+        <div className="text-cyan-400 font-medium">Loading...</div>
+      </div>
+    );
+  }
+
+  if (!user) {
     return (
       <div className="min-h-screen bg-slate-900 text-slate-100 flex items-center justify-center p-4">
         <div className="bg-slate-800 border border-slate-700 rounded-2xl p-10 max-w-md w-full text-center">
@@ -99,10 +141,10 @@ export default function AdminPage() {
             This area is restricted to authorised Spark E-Solutions team members.
             Please sign in with your Google account to continue.
           </p>
-          {/* Google Sign-In button — Firebase Auth integration placeholder */}
+          {/* Google Sign-In button */}
           <button
             className="w-full flex items-center justify-center gap-3 bg-white hover:bg-slate-100 text-slate-900 font-semibold py-3 px-6 rounded-xl transition-colors"
-            onClick={() => alert("Firebase Google Auth — connect in lib/firebase.ts")}
+            onClick={handleSignIn}
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24">
               <path
@@ -150,8 +192,11 @@ export default function AdminPage() {
             </span>
           </div>
           <div className="flex items-center gap-4">
-            <span className="text-slate-400 text-sm">admin@sparke.solutions</span>
-            <button className="flex items-center gap-2 text-slate-400 hover:text-red-400 transition-colors text-sm">
+            <span className="text-slate-400 text-sm">{user.email}</span>
+            <button
+              onClick={handleSignOut}
+              className="flex items-center gap-2 text-slate-400 hover:text-red-400 transition-colors text-sm"
+            >
               <LogOut className="w-4 h-4" />
               Sign Out
             </button>
