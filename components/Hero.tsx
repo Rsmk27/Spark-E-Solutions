@@ -5,10 +5,10 @@ import Link from "next/link";
 import { motion, Variants } from "framer-motion";
 import { ArrowRight, Zap, Globe, Cpu } from "lucide-react";
 
+const line1Chars = "SPARK".split("");
+const line2Chars = "E-SOLUTIONS".split("");
+
 export default function Hero() {
-  const line1 = "SPARK";
-  const line2 = "E-SOLUTIONS";
-  
   const container = {
     hidden: { opacity: 0 },
     visible: (i = 1) => ({
@@ -76,7 +76,7 @@ export default function Hero() {
             className="flex flex-wrap justify-center overflow-visible"
             aria-hidden="true"
           >
-            {line1.split("").map((char, index) => (
+            {line1Chars.map((char, index) => (
               <motion.span
                 key={index}
                 variants={child}
@@ -95,7 +95,7 @@ export default function Hero() {
             className="flex flex-wrap justify-center mt-2 md:mt-4 overflow-visible"
             aria-hidden="true"
           >
-            {line2.split("").map((char, index) => (
+            {line2Chars.map((char, index) => (
               <motion.span
                 key={index}
                 variants={child}
