@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { auth } from "@/lib/firebase";
 import {
@@ -95,6 +95,11 @@ export default function AdminPage() {
   );
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+
+  const pendingBookingsCount = useMemo(
+    () => mockBookings.filter((b) => b.status === "pending").length,
+    []
+  );
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -278,7 +283,7 @@ export default function AdminPage() {
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-semibold text-white">Incoming Bookings</h2>
               <span className="text-sm text-slate-400">
-                {mockBookings.filter((b) => b.status === "pending").length} pending
+                {pendingBookingsCount} pending
               </span>
             </div>
             <div className="space-y-4">
