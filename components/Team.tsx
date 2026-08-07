@@ -3,7 +3,16 @@
 import { motion } from "framer-motion";
 import { Users, Linkedin, FileText } from "lucide-react";
 
-const team = [
+interface TeamMember {
+  name: string;
+  role: string;
+  icon: string;
+  resume?: string;
+  linkedin: string;
+  image: string;
+}
+
+const team: TeamMember[] = [
   { 
     name: "Chaitanya", 
     role: "Founder & Lead Engineer", 
